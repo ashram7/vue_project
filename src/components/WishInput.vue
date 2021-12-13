@@ -1,9 +1,12 @@
 <!-- WishInput.vue -->
 <template lang="html">
-    <div>
-      <input type="text" v-model="newWishItem">
-      <button v-on:click="addWish">추가</button>
-    </div>
+  <div class="inputBox shadow">
+    <input type="text" v-model="newWishItem" v-on:keyup.enter="addWish"
+        placeholder="Type what you wish to do">
+    <span class="addContainer" v-on:click="addWish">
+      <i class="addBtn fas fa-plus" aria-hidden="true"></i>
+    </span>
+  </div>
 </template>
 <script>
     export default {
@@ -27,9 +30,37 @@
         },
         clearInput(){
           this.newWishItem = '';
-        }        
+        }
       }
     }
 </script>
 <style lang="css" scoped>
+input:focus {
+  outline: none;
+}
+.inputBox {
+  background: white;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 5px;
+  margin-bottom: 25px;
+}
+.inputBox input {
+  border-style: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  width: 12em;
+  color: #2f3b52;
+}
+.addContainer {
+  float: right;
+  background: linear-gradient(to right, #ff4c4d, #b30000);
+  display: inline-block;
+  width: 3em;
+  border-radius: 0 5px 5px 0;
+}
+.addBtn {
+  color: white;
+  vertical-align: middle;
+}
 </style>
