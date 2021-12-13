@@ -6,6 +6,16 @@
     <span class="addContainer" v-on:click="addWish">
       <i class="addBtn fas fa-plus" aria-hidden="true"></i>
     </span>
+
+    <modal v-if="showModal" @close="showModal = false">
+        <!-- 모달 제목 -->
+        <h3 slot="header">경고</h3>
+        <!-- 모달 내용 -->
+        <span slot="footer" @click="showModal = false">
+            위시 리스트를 입력하세요.
+            <i class="closeModalBtn fas fa-times" aria-hidden="true"></i>
+        </span>
+    </modal>    
   </div>
 </template>
 <script>
@@ -23,6 +33,7 @@
             var value = this.newWishItem && this.newWishItem.trim();
             //console.log(this.newWishItem);
             //localStorage.setItem(this.newWishItem, this.newWishItem);
+            this.$emit('addWish',value);
             localStorage.setItem(value, value);
             // 인풋 박스의 입력 값을 초기화
             this.clearInput();

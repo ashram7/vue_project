@@ -1,36 +1,23 @@
 <!-- WishList.vue -->
 <template lang="html">
   <section>
-    <ul>
-      <li v-for="(wishItem, index) in wishItems" :key="wishItem" class="shadow">
+    <transition-group name="list" tag="ul">
+      <li v-for="(wishItem, index) in propsdata" :key="wishItem" class="shadow">
         <i class="checkBtn fas fa-check" aria-hidden="true"></i>
         {{ wishItem }}
         <span class="removeBtn" type="button">
-          <i class="far fa-trash-alt" aria-hidden="true" @click="removeWish"></i>
+          <i class="far fa-trash-alt" aria-hidden="true" @click="removeWish(wishItem, index)"></i>
         </span>
       </li>
-    </ul>
+    </transition-group>
   </section>
 </template>
 <script>
     export default {
       props: ['propsdata'],
-      data() {
-        return {
-          wishItems: []
-        }
-      },
       methods: {
         removeWish(wishItem, index) {
-          localStorage.removeItem(wishItem);
-          this.wishItems.splice(index, 1);
-        }
-      },
-      created() {
-        if (localStorage.length > 0) {
-          for (var i = 0; i < localStorage.length; i++) {
-            this.wishItems.push(localStorage.key(i));
-          }
+          this.$emit('removeWish', wishItem, index);
         }
       }
     }
@@ -62,5 +49,12 @@ li{
 .removeBtn{
     margin-left: auto;
     color: #de4343;
+}
+.list-enter-active, .list-leave-active {
+    transition: all 1s;
+}
+.list-enter, .list-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
 }
 </style>

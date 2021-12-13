@@ -8,7 +8,7 @@
     export default {
       methods: {
         clearWish() {
-          localStorage.clear();
+          this.$emit('removeAll');
         }
       }
     }

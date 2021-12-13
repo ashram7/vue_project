@@ -2,8 +2,8 @@
     <div id="app">
       <WishHeader></WishHeader>
       <WishInput v-on:addWish="addWish"></WishInput>
-      <WishList v-bind:propsdata="wishItems"></WishList>
-      <WishFooter></WishFooter>
+      <WishList v-bind:propsdata="wishItems" @removeWish="removeWish"></WishList>
+      <WishFooter v-on:removeAll="clearAll"></WishFooter>
     </div>
 </template>
 <script>
@@ -17,9 +17,26 @@
           wishItems: []
         }
       },
+      created() {
+        if (localStorage.length > 0) {
+          for (var i = 0; i < localStorage.length; i++) {
+            this.wishItems.push(localStorage.key(i));
+          }
+        }
+      },
       methods: {
-        addWish() {
+        addWish(wishItem) {
           // 로컬 스토리지에 데이터를 추가하는 로직
+          localStorage.setItem(wishItem, wishItem);
+          this.wishItems.push(wishItem);
+        },
+        clearAll() {
+          localStorage.clear();
+          this.wishItems = [];
+        },
+        removeWish(wishItem, index) {
+          localStorage.removeItem(wishItem);
+          this.wishItems.splice(index, 1);
         }
       },
       components: {
