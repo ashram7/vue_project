@@ -1,8 +1,8 @@
 <template lang="html">
     <div id="app">
       <WishHeader></WishHeader>
-      <WishInput></WishInput>
-      <WishList></WishList>
+      <WishInput v-on:addWish="addWish"></WishInput>
+      <WishList v-bind:propsdata="wishItems"></WishList>
       <WishFooter></WishFooter>
     </div>
 </template>
@@ -12,12 +12,22 @@
     import WishList from './components/WishList.vue'
     import WishFooter from './components/WishFooter.vue'
     export default {
-        components: {
-            'WishHeader': WishHeader,
-            'WishInput': WishInput,
-            'WishList': WishList,
-            'WishFooter': WishFooter
+      data() {
+        return {
+          wishItems: []
         }
+      },
+      methods: {
+        addWish() {
+          // 로컬 스토리지에 데이터를 추가하는 로직
+        }
+      },
+      components: {
+          'WishHeader': WishHeader,
+          'WishInput': WishInput,
+          'WishList': WishList,
+          'WishFooter': WishFooter
+      }
     }
 </script>
 <style lang="css">
