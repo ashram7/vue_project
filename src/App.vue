@@ -1,60 +1,38 @@
-<template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
-  </div>
+<template lang="html">
+    <div id="app">
+      <WishHeader></WishHeader>
+      <WishInput></WishInput>
+      <WishList></WishList>
+      <WishFooter></WishFooter>
+    </div>
 </template>
-
 <script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+    import WishHeader from './components/WishHeader.vue'
+    import WishInput from './components/WishInput.vue'
+    import WishList from './components/WishList.vue'
+    import WishFooter from './components/WishFooter.vue'
+    export default {
+        components: {
+            'WishHeader': WishHeader,
+            'WishInput': WishInput,
+            'WishList': WishList,
+            'WishFooter': WishFooter
+        }
     }
-  }
-}
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="css">
+body {
+    text-align: center;
+    background-color: #f6f6f8;
 }
-
-h1, h2 {
-  font-weight: normal;
+input {
+    border-style: groove;
+    width: 200px;
 }
-
-ul {
-  list-style-type: none;
-  padding: 0;
+button {
+    border-style: groove;
 }
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+.shadow {
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03);
 }
 </style>
