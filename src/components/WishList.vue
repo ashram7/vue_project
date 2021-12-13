@@ -2,11 +2,7 @@
 <template lang="html">
   <section>
     <ul>
-      <li>위시리스트 1</li>
-      <li>위시리스트 2</li>
-      <li>위시리스트 3</li>
-      <li>위시리스트 4</li>
-      <li>위시리스트 5</li>
+      <li v-for="wishItem in wishItems"> {{ wishItem }} </li>
     </ul>
   </section>
 </template>
@@ -23,7 +19,7 @@
             this.wishItems.push(localStorage.key(i));
           }
         }
-      }      
+      }
     }
 </script>
 <style lang="css" scoped>
